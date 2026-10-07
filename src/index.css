@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Libre Caslon Text", ui-serif, Georgia, serif;
+
+  --color-forest: #18281e;
+  --color-mist: #9BA8A0;
+  --color-wood: #A68966;
+  --color-cream: #FAF9F4;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Keep anchored sections clear of the fixed navbar */
+  section[id] {
+    scroll-margin-top: 4.5rem;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-forest);
+  }
+}
+
+/* Custom scrollbar and ambient animation classes */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: #d8e6dd;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #bccac1;
+}
+
+/* Floating ambient fog overlay animation */
+@keyframes fog-drift {
+  0% { transform: translateX(0%) translateY(0%) scale(1); }
+  50% { transform: translateX(4%) translateY(2%) scale(1.05); }
+  100% { transform: translateX(0%) translateY(0%) scale(1); }
+}
+
+.animate-fog-drift {
+  animation: fog-drift 20s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fog-drift {
+    animation: none;
+  }
+}
+
+/* Hide scrollbars while keeping the area scrollable */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
